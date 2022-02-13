@@ -1,0 +1,60 @@
+$ sh canary.sh
+configmap/canary-config-v2 unchanged
+deployment.apps/canary-v2 unchanged
+V1 PODS: 3
+V2 PODS: 1
+deployment.apps/canary-v2 scaled
+deployment.apps/canary-v1 scaled
+Waiting for deployment "canary-v2" rollout to finish: 1 of 2 updated replicas are available...
+Waiting for deployment "canary-v2" rollout to finish: 1 of 2 updated replicas are available...
+deployment "canary-v2" successfully rolled out
+Canary deployment of 1 replicas successful!
+V1 PODS: 2
+V2 PODS: 2
+Canary deployment of v2 successful
+
+# cURL Output
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 1</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 1</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 1</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 1</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 1</h1>
+</html>
+bash-5.1# curl 172.20.219.205
+<html>
+<h1>This is version 2</h1>
+</html>
