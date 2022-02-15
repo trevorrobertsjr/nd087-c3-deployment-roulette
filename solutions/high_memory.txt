@@ -1,0 +1,2 @@
+pod: hello-world-794458d64d-7hmqv
+deployment: hello-world
