@@ -1,60 +1,21 @@
-$ sh canary.sh
-configmap/canary-config-v2 unchanged
-deployment.apps/canary-v2 unchanged
-V1 PODS: 3
-V2 PODS: 1
-deployment.apps/canary-v2 scaled
-deployment.apps/canary-v1 scaled
-Waiting for deployment "canary-v2" rollout to finish: 1 of 2 updated replicas are available...
-Waiting for deployment "canary-v2" rollout to finish: 1 of 2 updated replicas are available...
-deployment "canary-v2" successfully rolled out
-Canary deployment of 1 replicas successful!
-V1 PODS: 2
-V2 PODS: 2
-Canary deployment of v2 successful
+# There are two replicas of canary-v1 and two replicas of canary-v2
 
-# cURL Output
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 1</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 1</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 1</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 1</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 1</h1>
-</html>
-bash-5.1# curl 172.20.219.205
-<html>
-<h1>This is version 2</h1>
-</html>
+$ kubectl get pods --all-namespaces
+NAMESPACE     NAME                           READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-66wd9                 1/1     Running   0          9m19s
+kube-system   aws-node-cgqwv                 1/1     Running   0          9m23s
+kube-system   coredns-f47955f89-rtfkv        1/1     Running   0          13m
+kube-system   coredns-f47955f89-x2ktd        1/1     Running   0          13m
+kube-system   kube-proxy-7z7qb               1/1     Running   0          9m19s
+kube-system   kube-proxy-gtfhl               1/1     Running   0          9m23s
+udacity       blue-8475cbdf46-4wwjq          1/1     Running   0          2m1s
+udacity       blue-8475cbdf46-kmldw          1/1     Running   0          2m1s
+udacity       blue-8475cbdf46-vcwhb          1/1     Running   0          2m1s
+udacity       canary-v1-64598c676f-5qgt7     1/1     Running   0          2m3s
+udacity       canary-v1-64598c676f-g8hcn     1/1     Running   0          2m3s
+udacity       canary-v2-5dc9c56687-26r4c     1/1     Running   0          30s
+udacity       canary-v2-5dc9c56687-rr86d     1/1     Running   0          35s
+udacity       green-5cdd96c9b4-ch9ff         1/1     Running   0          2m1s
+udacity       green-5cdd96c9b4-njtfh         1/1     Running   0          2m1s
+udacity       green-5cdd96c9b4-w7jhv         1/1     Running   0          2m1s
+udacity       hello-world-794458d64d-9tzlp   1/1     Running   0          2m5s
